@@ -178,11 +178,33 @@
       padding: 54px 0 40px;
     }
     .hero-card{
-      border: 1px solid var(--line);
-      background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.04));
-      border-radius: var(--radius2);
-      box-shadow: var(--shadow);
-      overflow: hidden;
+  position: relative;
+  border: 1px solid var(--line);
+  background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.04));
+  border-radius: var(--radius2);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+.hero-watermark{
+  position: absolute;
+  inset: 0;
+  background-image: url("logo.png"); /* change to assets/logo.png if needed */
+  background-repeat: no-repeat;
+  background-position: center 18px;
+  background-size: min(520px, 70vw);
+  opacity: 0.10;
+  pointer-events: none;
+  filter: grayscale(100%);
+}
+
+/* When the screen is smaller (or "Desktop site" is acting weird), shrink it */
+@media (max-width: 900px){
+  .hero-watermark{
+    background-size: min(360px, 78vw);
+    background-position: center 18px;
+    opacity: 0.08;
+  }
+}
     }
     .hero-inner{
       padding: 34px 26px;
@@ -357,7 +379,7 @@
     <div class="wrap">
       <div class="nav-inner">
         <a class="brand" href="#top" aria-label="Home">
-          <img className="logo-img" src="logo.png" alt="A New Leaf logo" />
+          <img class="logo-img" src="logo.png" alt="A New Leaf logo" />
           <span>
             <strong>A New Leaf</strong>
             <small>Secure. Stable. Attainable.</small>
@@ -389,7 +411,8 @@
     <section class="hero">
       <div class="wrap">
         <div class="hero-card">
-          <div class="hero-inner">
+  <div class="hero-watermark" aria-hidden="true"></div>
+  <div class="hero-inner">
             <div>
               <span class="pill"><span class="dot"></span> National housing operator | Micro-studios with professional structure</span>
               <h1>Secure. Stable. Attainable Housing.</h1>
