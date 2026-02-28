@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Micro-Studio Communities | Secure. Stable. Attainable.</title>
   <meta name="description" content="Professionally managed micro-studio communities expanding affordable housing access while strengthening workforce and neighborhood stability." />
-
   <style>
     :root{
       --bg: #0b0f17;
@@ -42,8 +41,8 @@
     a { color: inherit; text-decoration: none; }
     a:hover { text-decoration: underline; }
 
+    /* Layout */
     .wrap{ max-width: var(--max); margin: 0 auto; padding: 0 18px; }
-
     .grid{
       display: grid;
       grid-template-columns: 1.2fr 0.8fr;
@@ -53,6 +52,7 @@
       .grid{ grid-template-columns: 1fr; }
     }
 
+    /* Top Nav */
     .nav{
       position: sticky;
       top: 0;
@@ -83,8 +83,6 @@
         rgba(255,255,255,0.08);
       border: 1px solid var(--line);
       box-shadow: 0 10px 40px rgba(0,0,0,0.35);
-      display:inline-block;
-      flex: 0 0 auto;
     }
     .brand strong{ font-weight: 700; letter-spacing: 0.2px; }
     .brand small{ color: var(--faint); display:block; margin-top: 1px; font-size: 12px; }
@@ -117,6 +115,7 @@
       justify-content: flex-end;
     }
 
+    /* Buttons */
     .btn{
       display:inline-flex;
       align-items:center;
@@ -145,8 +144,9 @@
     .btn.primary:hover{
       border-color: rgba(126,231,135,0.55);
     }
-    .btn.ghost{ background: transparent; }
-
+    .btn.ghost{
+      background: transparent;
+    }
     .pill{
       display:inline-flex;
       align-items:center;
@@ -160,10 +160,13 @@
     }
     .dot{ width: 8px; height: 8px; border-radius: 99px; background: var(--accent); box-shadow: 0 0 0 4px rgba(126,231,135,0.12); }
 
+    /* Sections */
     section{ padding: 54px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
     section:last-of-type{ border-bottom: none; }
 
-    .hero{ padding: 54px 0 40px; }
+    .hero{
+      padding: 54px 0 40px;
+    }
     .hero-card{
       border: 1px solid var(--line);
       background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.04));
@@ -183,7 +186,9 @@
     }
 
     h1{ font-size: 44px; line-height: 1.08; margin: 10px 0 10px; letter-spacing: -0.6px; }
-    @media (max-width: 540px){ h1{ font-size: 36px; } }
+    @media (max-width: 540px){
+      h1{ font-size: 36px; }
+    }
     .lead{
       color: var(--muted);
       font-size: 16px;
@@ -191,7 +196,10 @@
       max-width: 62ch;
     }
 
-    .cards{ display:grid; gap: 12px; }
+    .cards{
+      display:grid;
+      gap: 12px;
+    }
     .card{
       border: 1px solid var(--line);
       background: rgba(255,255,255,0.06);
@@ -200,8 +208,11 @@
     }
     .card h3{ margin: 0 0 6px; font-size: 14px; letter-spacing: 0.2px; }
     .card p{ margin: 0; color: var(--muted); font-size: 13px; }
-
-    .mini{ display:flex; align-items:flex-start; gap: 12px; }
+    .mini{
+      display:flex;
+      align-items:flex-start;
+      gap: 12px;
+    }
     .icon{
       width: 36px; height: 36px; border-radius: 14px;
       border: 1px solid var(--line);
@@ -221,8 +232,15 @@
       gap: 12px;
       margin-bottom: 14px;
     }
-    h2{ margin: 0; font-size: 22px; letter-spacing: -0.2px; }
-    .hint{ color: var(--faint); font-size: 12px; }
+    h2{
+      margin: 0;
+      font-size: 22px;
+      letter-spacing: -0.2px;
+    }
+    .hint{
+      color: var(--faint);
+      font-size: 12px;
+    }
 
     .panel{
       border: 1px solid var(--line);
@@ -231,7 +249,6 @@
       padding: 18px;
     }
     .panel p{ color: var(--muted); margin: 10px 0 0; }
-
     .bullets{
       margin: 12px 0 0;
       padding-left: 18px;
@@ -239,11 +256,11 @@
     }
     .bullets li{ margin: 6px 0; }
 
+    /* Audience accordions */
     .audience-grid{
       display:grid;
       grid-template-columns: 1fr 1fr;
       gap: 14px;
-      margin-top: 12px;
     }
     @media (max-width: 980px){
       .audience-grid{ grid-template-columns: 1fr; }
@@ -290,9 +307,17 @@
     }
     .content ul{ margin: 8px 0 0; padding-left: 18px; }
 
-    .faq{ display:grid; gap: 10px; }
+    /* FAQ */
+    .faq{
+      display:grid;
+      gap: 10px;
+    }
 
-    footer{ padding: 34px 0 44px; color: var(--faint); }
+    /* Footer */
+    footer{
+      padding: 34px 0 44px;
+      color: var(--faint);
+    }
     .footer-grid{
       display:grid;
       grid-template-columns: 1.2fr 0.8fr;
@@ -307,286 +332,261 @@
       color: rgba(255,255,255,0.55);
       line-height: 1.55;
     }
-    .links{ display:flex; flex-wrap: wrap; gap: 10px; }
+    .links{
+      display:flex; flex-wrap: wrap; gap: 10px;
+    }
 
+    /* Smooth scroll offset for sticky nav */
     :target{ scroll-margin-top: 90px; }
   </style>
-
-  <script>
-    // One switch for backend later. Leave empty for now.
-    // Example: "https://api.yourbrand.com"
-    window.APP_CONFIG = window.APP_CONFIG || { API_BASE_URL: "" };
-
-    function apiUrl(path) {
-      const base = (window.APP_CONFIG?.API_BASE_URL || "").trim().replace(/\/+$/, "");
-      const p = String(path || "").replace(/^\/+/, "");
-      return base ? `${base}/${p}` : null;
-    }
-
-    async function apiFetch(path, options = {}) {
-      const url = apiUrl(path);
-      if (!url) throw new Error("API_BASE_URL not configured.");
-      const res = await fetch(url, {
-        ...options,
-        headers: { "Content-Type": "application/json", ...(options.headers || {}) }
-      });
-      if (!res.ok) throw new Error(`API error ${res.status}`);
-      const ct = res.headers.get("content-type") || "";
-      return ct.includes("application/json") ? res.json() : res.text();
-    }
-  </script>
 </head>
 
 <body>
-  <div id="root"></div>
+  <!-- Top Nav -->
+  <header class="nav" role="banner">
+    <div class="wrap">
+      <div class="nav-inner">
+        <a class="brand" href="#top" aria-label="Home">
+          <span class="logo" aria-hidden="true"></span>
+          <span>
+            <strong>Micro-Studio Communities</strong>
+            <small>Secure. Stable. Attainable.</small>
+          </span>
+        </a>
 
-  <!-- React (UMD) + Babel so JSX works on GitHub Pages without build tools -->
-  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+        <nav class="nav-links" aria-label="Primary">
+          <a href="#model">Our Model</a>
+          <a href="#communities">Our Communities</a>
+          <a href="#residents">Residents</a>
+          <a href="#public-safety">Public Safety Partners</a>
+          <a href="#municipal">Municipal & Regulatory</a>
+          <a href="#neighbors">Neighbors & Community</a>
+          <a href="#security">Safety & Security</a>
+          <a href="#faq">FAQ</a>
+          <a href="#contact">Contact</a>
+        </nav>
 
-  <script type="text/babel">
-    const { useRef, useCallback } = React;
-
-    function Section({ id, title, hint, children }) {
-      return (
-        <section id={id}>
-          <div className="wrap">
-            <div className="section-head">
-              <h2>{title}</h2>
-              {hint ? <span className="hint">{hint}</span> : null}
-            </div>
-            {children}
-          </div>
-        </section>
-      );
-    }
-
-    function Header() {
-      return (
-        <header className="nav" role="banner">
-          <div className="wrap">
-            <div className="nav-inner">
-              <a className="brand" href="#top" aria-label="Home">
-                <span className="logo" aria-hidden="true"></span>
-                <span>
-                  <strong>Micro-Studio Communities</strong>
-                  <small>Secure. Stable. Attainable.</small>
-                </span>
-              </a>
-
-              <nav className="nav-links" aria-label="Primary">
-                <a href="#model">Our Model</a>
-                <a href="#communities">Our Communities</a>
-                <a href="#residents">Residents</a>
-                <a href="#public-safety">Public Safety Partners</a>
-                <a href="#municipal">Municipal &amp; Regulatory</a>
-                <a href="#neighbors">Neighbors &amp; Community</a>
-                <a href="#security">Safety &amp; Security</a>
-                <a href="#faq">FAQ</a>
-                <a href="#contact">Contact</a>
-              </nav>
-
-              <div className="nav-cta">
-                <a className="btn ghost" href="#contact">Partner With Us</a>
-                <a className="btn primary" href="#apply">Apply</a>
-              </div>
-            </div>
-          </div>
-        </header>
-      );
-    }
-
-    function Hero() {
-      return (
-        <section className="hero">
-          <div className="wrap">
-            <div className="hero-card">
-              <div className="hero-inner">
-                <div>
-                  <span className="pill">
-                    <span className="dot"></span>
-                    National housing operator | Micro-studios with professional structure
-                  </span>
-
-                  <h1>Secure. Stable. Attainable Housing.</h1>
-
-                  <p className="lead">
-                    Professionally managed micro-studio communities expanding affordable housing access while
-                    strengthening workforce and neighborhood stability.
-                  </p>
-
-                  <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
-                    <a className="btn primary" href="#apply">Apply for Housing</a>
-                    <a className="btn" href="#public-safety">Public Safety Partners</a>
-                    <a className="btn" href="#model">Learn About Our Model</a>
-                  </div>
-
-                  <p style={{ margin: "14px 0 0", color: "var(--faint)", fontSize: 12 }}>
-                    We are a housing operator, not a correctional facility. Communities are open to all qualified applicants.
-                  </p>
-                </div>
-
-                <div className="cards" aria-label="Highlights">
-                  <div className="card mini">
-                    <div className="icon">01</div>
-                    <div>
-                      <h3>Private Living, Predictable Rules</h3>
-                      <p>Individual micro-studios with clear leases, community standards, and professional management.</p>
-                    </div>
-                  </div>
-
-                  <div className="card mini">
-                    <div className="icon">02</div>
-                    <div>
-                      <h3>Safety Infrastructure</h3>
-                      <p>Controlled access and common-area security systems designed for accountability and privacy.</p>
-                    </div>
-                  </div>
-
-                  <div className="card mini">
-                    <div className="icon">03</div>
-                    <div>
-                      <h3>Equal Opportunity Housing</h3>
-                      <p>No blanket exclusions based on criminal history. Individualized review consistent with applicable law.</p>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-          </div>
-        </section>
-      );
-    }
-
-    function AudiencePanels() {
-      return (
-        <>
-          <details open>
-            <summary>
-              Probation, Parole &amp; Supervision Officers <span className="tag">Supervision Support</span>
-            </summary>
-            <div className="content">
-              <h4>What we provide</h4>
-              <ul>
-                <li>Verified lease documentation and residency confirmation procedures</li>
-                <li>Controlled access entry systems</li>
-                <li>Common-area video surveillance (not inside private units)</li>
-                <li>Clear conduct policies and enforceable lease terms</li>
-                <li>Incident documentation protocols</li>
-                <li>Responsive onsite or regional management</li>
-                <li>Cooperation with lawful requests consistent with applicable law</li>
-              </ul>
-
-              <h4>What we do not do</h4>
-              <ul>
-                <li>We do not supervise residents on behalf of any agency</li>
-                <li>We do not monitor inside private residences</li>
-                <li>We do not investigate or enforce beyond lease terms</li>
-                <li>We do not disclose resident data without lawful basis</li>
-              </ul>
-
-              <h4>Why this helps</h4>
-              <ul>
-                <li>Reduces “ghost address” problems and transient housing churn</li>
-                <li>Creates consistent, documentable housing stability</li>
-                <li>Provides objective incident records when needed</li>
-                <li>Discourages disorder through structure and clear rules</li>
-              </ul>
-
-              <div style={{ marginTop: 12, display: "flex", gap: 10, flexWrap: "wrap" }}>
-                <a className="btn" href="#contact">Request Partner Info</a>
-                <a className="btn ghost" href="#contact">Lawful Inquiry Contact</a>
-              </div>
-            </div>
-          </details>
-
-          <details>
-            <summary>
-              Law Enforcement <span className="tag">Community Safety</span>
-            </summary>
-            <div className="content">
-              <h4>Operational transparency</h4>
-              <ul>
-                <li>Professional management contact pathways</li>
-                <li>Common-area security infrastructure to deter disorder</li>
-                <li>Incident documentation and preservation procedures</li>
-                <li>Controlled access entry reduces unauthorized traffic</li>
-              </ul>
-
-              <h4>Privacy boundaries</h4>
-              <ul>
-                <li>No surveillance inside private residences</li>
-                <li>Information disclosure only with lawful basis</li>
-              </ul>
-
-              <h4>Local outcomes</h4>
-              <ul>
-                <li>More predictable housing reduces street-level instability</li>
-                <li>Structured operations reduce nuisance patterns</li>
-              </ul>
-
-              <div style={{ marginTop: 12 }}>
-                <a className="btn" href="#contact">Public Safety Contact</a>
-              </div>
-            </div>
-          </details>
-        </>
-      );
-    }
-
-    function FAQ() {
-      const ref = useRef(null);
-
-      const onToggle = useCallback((e) => {
-        const toggled = e.target;
-        if (!(toggled instanceof HTMLDetailsElement)) return;
-        if (!toggled.open) return;
-
-        const root = ref.current;
-        if (!root) return;
-
-        root.querySelectorAll("details").forEach((d) => {
-          if (d !== toggled) d.open = false;
-        });
-      }, []);
-
-      return (
-        <div className="faq" ref={ref} onToggle={onToggle}>
-          <details>
-            <summary>Are you a halfway house? <span className="tag">No</span></summary>
-            <div className="content">
-              We are a private housing provider. Residents sign leases and live independently. We provide housing, not supervision.
-            </div>
-          </details>
-
-          <details>
-            <summary>Do you exclusively house justice-involved individuals? <span className="tag">No</span></summary>
-            <div className="content">
-              Our communities are open to all qualified applicants. We are committed to equal housing opportunity.
-            </div>
-          </details>
-
-          <details>
-            <summary>Do you ban applicants with criminal histories? <span className="tag">No blanket bans</span></summary>
-            <div className="content">
-              We do not impose blanket exclusions based on criminal history. Applications are reviewed individually consistent with applicable law.
-            </div>
-          </details>
-
-          <details>
-            <summary>Do you share resident data with law enforcement? <span className="tag">Lawful basis</span></summary>
-            <div className="content">
-              We cooperate with lawful requests consistent with applicable law and resident privacy rights.
-            </div>
-          </details>
-
-          <details>
-            <summary>How do you maintain safety? <span className="tag">Structure</span></summary>
-            <div className="content">
-              Through professional management, clear conduct standards, controlled access infrastructure, and common-area security systems.
-            </div>
-          </details>
+        <div class="nav-cta">
+          <a class="btn ghost" href="#contact">Partner With Us</a>
+          <a class="btn primary" href="#apply">Apply</a>
         </div>
-  
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <main id="top">
+    <section class="hero">
+      <div class="wrap">
+        <div class="hero-card">
+          <div class="hero-inner">
+            <div>
+              <span class="pill"><span class="dot"></span> National housing operator | Micro-studios with professional structure</span>
+              <h1>Secure. Stable. Attainable Housing.</h1>
+              <p class="lead">
+                Professionally managed micro-studio communities expanding affordable housing access while strengthening workforce and neighborhood stability.
+              </p>
+              <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                <a class="btn primary" href="#apply">Apply for Housing</a>
+                <a class="btn" href="#public-safety">Public Safety Partners</a>
+                <a class="btn" href="#model">Learn About Our Model</a>
+              </div>
+              <p style="margin:14px 0 0; color: var(--faint); font-size: 12px;">
+                We are a housing operator, not a correctional facility. Communities are open to all qualified applicants.
+              </p>
+            </div>
+
+            <div class="cards" aria-label="Highlights">
+              <div class="card mini">
+                <div class="icon">01</div>
+                <div>
+                  <h3>Private Living, Predictable Rules</h3>
+                  <p>Individual micro-studios with clear leases, community standards, and professional management.</p>
+                </div>
+              </div>
+              <div class="card mini">
+                <div class="icon">02</div>
+                <div>
+                  <h3>Safety Infrastructure</h3>
+                  <p>Controlled access and common-area security systems designed for accountability and privacy.</p>
+                </div>
+              </div>
+              <div class="card mini">
+                <div class="icon">03</div>
+                <div>
+                  <h3>Equal Opportunity Housing</h3>
+                  <p>No blanket exclusions based on criminal history. Individualized review consistent with applicable law.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- WHO / MODEL -->
+    <section id="model">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Our Model</h2>
+          <span class="hint">A scalable approach built on stability, structure, and dignity.</span>
+        </div>
+
+        <div class="panel">
+          <p>
+            We develop and operate professionally managed micro-studio communities across the United States. Our model expands access to safe, private, affordable housing for individuals often screened out of traditional rental markets.
+          </p>
+          <p>
+            Our communities are open to all qualified applicants. We do not impose blanket exclusions based on criminal history. Applications are evaluated individually in accordance with fair housing principles and applicable law.
+          </p>
+          <ul class="bullets">
+            <li>Housing operator, not a correctional facility</li>
+            <li>Transparent leasing policies and enforceable community standards</li>
+            <li>Professional management and consistent maintenance</li>
+            <li>Safety systems designed to protect residents and neighbors while respecting privacy</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMMUNITIES -->
+    <section id="communities">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Our Communities</h2>
+          <span class="hint">Independent living with professional structure.</span>
+        </div>
+
+        <div class="grid">
+          <div class="panel">
+            <p>
+              Each resident leases a private micro-studio designed for independence, affordability, and privacy. Our operations prioritize dignity, predictability, and order.
+            </p>
+            <h3 style="margin:14px 0 6px; font-size: 14px;">Core Features</h3>
+            <ul class="bullets">
+              <li>Self-contained studio units</li>
+              <li>Controlled building access</li>
+              <li>Professional property management</li>
+              <li>Transparent leasing policies</li>
+              <li>Clearly defined community standards</li>
+              <li>Responsive maintenance and oversight</li>
+            </ul>
+          </div>
+
+          <div class="panel">
+            <h3 style="margin:0 0 6px; font-size: 14px;">Our Principles</h3>
+            <ul class="bullets">
+              <li>Housing stability strengthens communities</li>
+              <li>Accountability and dignity can coexist</li>
+              <li>Structured environments reduce public strain</li>
+              <li>Equal opportunity expands access</li>
+              <li>Professional management promotes safety</li>
+            </ul>
+            <p style="margin-top:12px; color: var(--faint); font-size: 12px;">
+              Notes: Specific services and features may vary by community and local requirements.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESIDENTS -->
+    <section id="residents">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>For Residents</h2>
+          <span class="hint">Stability and opportunity, without drama.</span>
+        </div>
+
+        <div class="panel">
+          <p>
+            We provide attainable housing for individuals who are working, rebuilding, or seeking a stable place to live. Our residents include service workers, veterans, low-income renters, and individuals rebuilding after hardship, including justice-involved individuals reentering society.
+          </p>
+
+          <h3 style="margin:14px 0 6px; font-size: 14px;">What You Can Expect</h3>
+          <ul class="bullets">
+            <li>A clear lease and predictable rules</li>
+            <li>Professional management and responsive maintenance</li>
+            <li>Safe, orderly common areas</li>
+            <li>Respect for privacy inside your home</li>
+            <li>Equal housing opportunity</li>
+          </ul>
+
+          <p style="margin-top:12px;">
+            We provide housing, not supervision. Residents remain responsible for compliance with any external obligations that may apply to them.
+          </p>
+
+          <div id="apply" style="margin-top: 14px; display:flex; gap:10px; flex-wrap:wrap;">
+            <a class="btn primary" href="#contact">Start an Application</a>
+            <a class="btn" href="#faq">Read FAQs</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PUBLIC SAFETY PARTNERS -->
+    <section id="public-safety">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>For Public Safety Partners</h2>
+          <span class="hint">Structured housing that supports accountability.</span>
+        </div>
+
+        <div class="panel">
+          <p>
+            Stable housing reduces address instability, simplifies supervision, and supports compliance. Our communities provide predictable housing with professional oversight, while protecting resident privacy and operating within the law.
+          </p>
+
+          <div class="audience-grid" style="margin-top: 12px;">
+            <details open>
+              <summary>
+                Probation, Parole & Supervision Officers
+                <span class="tag">Supervision Support</span>
+              </summary>
+              <div class="content">
+                <h4>What we provide</h4>
+                <ul>
+                  <li>Verified lease documentation and residency confirmation procedures</li>
+                  <li>Controlled access entry systems</li>
+                  <li>Common-area video surveillance (not inside private units)</li>
+                  <li>Clear conduct policies and enforceable lease terms</li>
+                  <li>Incident documentation protocols</li>
+                  <li>Responsive onsite or regional management</li>
+                  <li>Cooperation with lawful requests consistent with applicable law</li>
+                </ul>
+
+                <h4>What we do not do</h4>
+                <ul>
+                  <li>We do not supervise residents on behalf of any agency</li>
+                  <li>We do not monitor inside private residences</li>
+                  <li>We do not investigate or enforce beyond lease terms</li>
+                  <li>We do not disclose resident data without lawful basis</li>
+                </ul>
+
+                <h4>Why this helps</h4>
+                <ul>
+                  <li>Reduces “ghost address” problems and transient housing churn</li>
+                  <li>Creates consistent, documentable housing stability</li>
+                  <li>Provides objective incident records when needed</li>
+                  <li>Discourages disorder through structure and clear rules</li>
+                </ul>
+
+                <div style="margin-top: 12px; display:flex; gap:10px; flex-wrap:wrap;">
+                  <a class="btn" href="#contact">Request Partner Info</a>
+                  <a class="btn ghost" href="#contact">Lawful Inquiry Contact</a>
+                </div>
+              </div>
+            </details>
+
+            <details>
+              <summary>
+                Law Enforcement
+                <span class="tag">Community Safety</span>
+              </summary>
+              <div class="content">
+                <h4>Operational transparency</h4>
+                <ul>
+                  <li>Professional management contact pathways</li>
+                  <li>Common-area security infrastructure to deter disorder</li>
+                  
