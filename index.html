@@ -1,0 +1,592 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Micro-Studio Communities | Secure. Stable. Attainable.</title>
+  <meta name="description" content="Professionally managed micro-studio communities expanding affordable housing access while strengthening workforce and neighborhood stability." />
+  <style>
+    :root{
+      --bg: #0b0f17;
+      --panel: rgba(255,255,255,0.06);
+      --panel2: rgba(255,255,255,0.09);
+      --text: rgba(255,255,255,0.92);
+      --muted: rgba(255,255,255,0.72);
+      --faint: rgba(255,255,255,0.55);
+      --line: rgba(255,255,255,0.14);
+      --accent: #7ee787;
+      --accent2:#8bb9ff;
+      --warn:#ffd479;
+      --shadow: 0 18px 60px rgba(0,0,0,0.55);
+      --radius: 18px;
+      --radius2: 26px;
+      --max: 1120px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body{
+      font-family: var(--sans);
+      background: radial-gradient(1200px 700px at 20% 10%, rgba(126,231,135,0.12), transparent 55%),
+                  radial-gradient(900px 600px at 90% 20%, rgba(139,185,255,0.12), transparent 55%),
+                  radial-gradient(800px 700px at 50% 100%, rgba(255,212,121,0.08), transparent 60%),
+                  var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Layout */
+    .wrap{ max-width: var(--max); margin: 0 auto; padding: 0 18px; }
+    .grid{
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 18px;
+    }
+    @media (max-width: 980px){
+      .grid{ grid-template-columns: 1fr; }
+    }
+
+    /* Top Nav */
+    .nav{
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(10px);
+      background: linear-gradient(to bottom, rgba(11,15,23,0.85), rgba(11,15,23,0.55));
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-inner{
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      padding: 12px 0;
+      gap: 12px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      min-width: 220px;
+    }
+    .logo{
+      width: 34px; height: 34px;
+      border-radius: 12px;
+      background:
+        radial-gradient(16px 16px at 30% 30%, rgba(126,231,135,0.9), transparent 60%),
+        radial-gradient(18px 18px at 70% 70%, rgba(139,185,255,0.9), transparent 60%),
+        rgba(255,255,255,0.08);
+      border: 1px solid var(--line);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.35);
+    }
+    .brand strong{ font-weight: 700; letter-spacing: 0.2px; }
+    .brand small{ color: var(--faint); display:block; margin-top: 1px; font-size: 12px; }
+
+    .nav-links{
+      display:flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
+    .nav-links a{
+      font-size: 13px;
+      color: var(--muted);
+      padding: 8px 10px;
+      border-radius: 12px;
+      border: 1px solid transparent;
+    }
+    .nav-links a:hover{
+      color: var(--text);
+      border-color: var(--line);
+      background: rgba(255,255,255,0.05);
+      text-decoration: none;
+    }
+
+    .nav-cta{
+      display:flex;
+      gap: 10px;
+      align-items:center;
+      min-width: 240px;
+      justify-content: flex-end;
+    }
+
+    /* Buttons */
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap: 8px;
+      padding: 10px 14px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.06);
+      color: var(--text);
+      font-size: 13px;
+      cursor: pointer;
+      user-select: none;
+      transition: transform 120ms ease, background 120ms ease, border-color 120ms ease;
+      text-decoration: none !important;
+    }
+    .btn:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,0.09);
+      border-color: rgba(255,255,255,0.20);
+    }
+    .btn.primary{
+      background: linear-gradient(135deg, rgba(126,231,135,0.20), rgba(139,185,255,0.18));
+      border-color: rgba(126,231,135,0.35);
+    }
+    .btn.primary:hover{
+      border-color: rgba(126,231,135,0.55);
+    }
+    .btn.ghost{
+      background: transparent;
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.05);
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .dot{ width: 8px; height: 8px; border-radius: 99px; background: var(--accent); box-shadow: 0 0 0 4px rgba(126,231,135,0.12); }
+
+    /* Sections */
+    section{ padding: 54px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    section:last-of-type{ border-bottom: none; }
+
+    .hero{
+      padding: 54px 0 40px;
+    }
+    .hero-card{
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.04));
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .hero-inner{
+      padding: 34px 26px;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 18px;
+      align-items: center;
+    }
+    @media (max-width: 980px){
+      .hero-inner{ grid-template-columns: 1fr; }
+    }
+
+    h1{ font-size: 44px; line-height: 1.08; margin: 10px 0 10px; letter-spacing: -0.6px; }
+    @media (max-width: 540px){
+      h1{ font-size: 36px; }
+    }
+    .lead{
+      color: var(--muted);
+      font-size: 16px;
+      margin: 0 0 18px;
+      max-width: 62ch;
+    }
+
+    .cards{
+      display:grid;
+      gap: 12px;
+    }
+    .card{
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.06);
+      border-radius: var(--radius);
+      padding: 16px 16px;
+    }
+    .card h3{ margin: 0 0 6px; font-size: 14px; letter-spacing: 0.2px; }
+    .card p{ margin: 0; color: var(--muted); font-size: 13px; }
+    .mini{
+      display:flex;
+      align-items:flex-start;
+      gap: 12px;
+    }
+    .icon{
+      width: 36px; height: 36px; border-radius: 14px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.05);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-family: var(--mono);
+      color: var(--faint);
+      flex: 0 0 auto;
+    }
+
+    .section-head{
+      display:flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    h2{
+      margin: 0;
+      font-size: 22px;
+      letter-spacing: -0.2px;
+    }
+    .hint{
+      color: var(--faint);
+      font-size: 12px;
+    }
+
+    .panel{
+      border: 1px solid var(--line);
+      border-radius: var(--radius2);
+      background: rgba(255,255,255,0.05);
+      padding: 18px;
+    }
+    .panel p{ color: var(--muted); margin: 10px 0 0; }
+    .bullets{
+      margin: 12px 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+    .bullets li{ margin: 6px 0; }
+
+    /* Audience accordions */
+    .audience-grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    @media (max-width: 980px){
+      .audience-grid{ grid-template-columns: 1fr; }
+    }
+
+    details{
+      border: 1px solid var(--line);
+      border-radius: var(--radius2);
+      background: rgba(255,255,255,0.05);
+      padding: 14px 14px;
+      overflow:hidden;
+    }
+    details[open]{ background: rgba(255,255,255,0.07); }
+    summary{
+      cursor: pointer;
+      list-style: none;
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 10px;
+      font-weight: 650;
+      letter-spacing: 0.2px;
+    }
+    summary::-webkit-details-marker{ display:none; }
+    .tag{
+      font-size: 11px;
+      color: rgba(255,255,255,0.75);
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.05);
+      padding: 6px 10px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+    .content{
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .content h4{
+      margin: 14px 0 6px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.86);
+      letter-spacing: 0.2px;
+    }
+    .content ul{ margin: 8px 0 0; padding-left: 18px; }
+
+    /* FAQ */
+    .faq{
+      display:grid;
+      gap: 10px;
+    }
+
+    /* Footer */
+    footer{
+      padding: 34px 0 44px;
+      color: var(--faint);
+    }
+    .footer-grid{
+      display:grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 18px;
+      align-items: start;
+    }
+    @media (max-width: 980px){
+      .footer-grid{ grid-template-columns: 1fr; }
+    }
+    .fineprint{
+      font-size: 12px;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.55;
+    }
+    .links{
+      display:flex; flex-wrap: wrap; gap: 10px;
+    }
+
+    /* Smooth scroll offset for sticky nav */
+    :target{ scroll-margin-top: 90px; }
+  </style>
+</head>
+
+<body>
+  <!-- Top Nav -->
+  <header class="nav" role="banner">
+    <div class="wrap">
+      <div class="nav-inner">
+        <a class="brand" href="#top" aria-label="Home">
+          <span class="logo" aria-hidden="true"></span>
+          <span>
+            <strong>Micro-Studio Communities</strong>
+            <small>Secure. Stable. Attainable.</small>
+          </span>
+        </a>
+
+        <nav class="nav-links" aria-label="Primary">
+          <a href="#model">Our Model</a>
+          <a href="#communities">Our Communities</a>
+          <a href="#residents">Residents</a>
+          <a href="#public-safety">Public Safety Partners</a>
+          <a href="#municipal">Municipal & Regulatory</a>
+          <a href="#neighbors">Neighbors & Community</a>
+          <a href="#security">Safety & Security</a>
+          <a href="#faq">FAQ</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <div class="nav-cta">
+          <a class="btn ghost" href="#contact">Partner With Us</a>
+          <a class="btn primary" href="#apply">Apply</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <main id="top">
+    <section class="hero">
+      <div class="wrap">
+        <div class="hero-card">
+          <div class="hero-inner">
+            <div>
+              <span class="pill"><span class="dot"></span> National housing operator | Micro-studios with professional structure</span>
+              <h1>Secure. Stable. Attainable Housing.</h1>
+              <p class="lead">
+                Professionally managed micro-studio communities expanding affordable housing access while strengthening workforce and neighborhood stability.
+              </p>
+              <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                <a class="btn primary" href="#apply">Apply for Housing</a>
+                <a class="btn" href="#public-safety">Public Safety Partners</a>
+                <a class="btn" href="#model">Learn About Our Model</a>
+              </div>
+              <p style="margin:14px 0 0; color: var(--faint); font-size: 12px;">
+                We are a housing operator, not a correctional facility. Communities are open to all qualified applicants.
+              </p>
+            </div>
+
+            <div class="cards" aria-label="Highlights">
+              <div class="card mini">
+                <div class="icon">01</div>
+                <div>
+                  <h3>Private Living, Predictable Rules</h3>
+                  <p>Individual micro-studios with clear leases, community standards, and professional management.</p>
+                </div>
+              </div>
+              <div class="card mini">
+                <div class="icon">02</div>
+                <div>
+                  <h3>Safety Infrastructure</h3>
+                  <p>Controlled access and common-area security systems designed for accountability and privacy.</p>
+                </div>
+              </div>
+              <div class="card mini">
+                <div class="icon">03</div>
+                <div>
+                  <h3>Equal Opportunity Housing</h3>
+                  <p>No blanket exclusions based on criminal history. Individualized review consistent with applicable law.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- WHO / MODEL -->
+    <section id="model">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Our Model</h2>
+          <span class="hint">A scalable approach built on stability, structure, and dignity.</span>
+        </div>
+
+        <div class="panel">
+          <p>
+            We develop and operate professionally managed micro-studio communities across the United States. Our model expands access to safe, private, affordable housing for individuals often screened out of traditional rental markets.
+          </p>
+          <p>
+            Our communities are open to all qualified applicants. We do not impose blanket exclusions based on criminal history. Applications are evaluated individually in accordance with fair housing principles and applicable law.
+          </p>
+          <ul class="bullets">
+            <li>Housing operator, not a correctional facility</li>
+            <li>Transparent leasing policies and enforceable community standards</li>
+            <li>Professional management and consistent maintenance</li>
+            <li>Safety systems designed to protect residents and neighbors while respecting privacy</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMMUNITIES -->
+    <section id="communities">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Our Communities</h2>
+          <span class="hint">Independent living with professional structure.</span>
+        </div>
+
+        <div class="grid">
+          <div class="panel">
+            <p>
+              Each resident leases a private micro-studio designed for independence, affordability, and privacy. Our operations prioritize dignity, predictability, and order.
+            </p>
+            <h3 style="margin:14px 0 6px; font-size: 14px;">Core Features</h3>
+            <ul class="bullets">
+              <li>Self-contained studio units</li>
+              <li>Controlled building access</li>
+              <li>Professional property management</li>
+              <li>Transparent leasing policies</li>
+              <li>Clearly defined community standards</li>
+              <li>Responsive maintenance and oversight</li>
+            </ul>
+          </div>
+
+          <div class="panel">
+            <h3 style="margin:0 0 6px; font-size: 14px;">Our Principles</h3>
+            <ul class="bullets">
+              <li>Housing stability strengthens communities</li>
+              <li>Accountability and dignity can coexist</li>
+              <li>Structured environments reduce public strain</li>
+              <li>Equal opportunity expands access</li>
+              <li>Professional management promotes safety</li>
+            </ul>
+            <p style="margin-top:12px; color: var(--faint); font-size: 12px;">
+              Notes: Specific services and features may vary by community and local requirements.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESIDENTS -->
+    <section id="residents">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>For Residents</h2>
+          <span class="hint">Stability and opportunity, without drama.</span>
+        </div>
+
+        <div class="panel">
+          <p>
+            We provide attainable housing for individuals who are working, rebuilding, or seeking a stable place to live. Our residents include service workers, veterans, low-income renters, and individuals rebuilding after hardship, including justice-involved individuals reentering society.
+          </p>
+
+          <h3 style="margin:14px 0 6px; font-size: 14px;">What You Can Expect</h3>
+          <ul class="bullets">
+            <li>A clear lease and predictable rules</li>
+            <li>Professional management and responsive maintenance</li>
+            <li>Safe, orderly common areas</li>
+            <li>Respect for privacy inside your home</li>
+            <li>Equal housing opportunity</li>
+          </ul>
+
+          <p style="margin-top:12px;">
+            We provide housing, not supervision. Residents remain responsible for compliance with any external obligations that may apply to them.
+          </p>
+
+          <div id="apply" style="margin-top: 14px; display:flex; gap:10px; flex-wrap:wrap;">
+            <a class="btn primary" href="#contact">Start an Application</a>
+            <a class="btn" href="#faq">Read FAQs</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PUBLIC SAFETY PARTNERS -->
+    <section id="public-safety">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>For Public Safety Partners</h2>
+          <span class="hint">Structured housing that supports accountability.</span>
+        </div>
+
+        <div class="panel">
+          <p>
+            Stable housing reduces address instability, simplifies supervision, and supports compliance. Our communities provide predictable housing with professional oversight, while protecting resident privacy and operating within the law.
+          </p>
+
+          <div class="audience-grid" style="margin-top: 12px;">
+            <details open>
+              <summary>
+                Probation, Parole & Supervision Officers
+                <span class="tag">Supervision Support</span>
+              </summary>
+              <div class="content">
+                <h4>What we provide</h4>
+                <ul>
+                  <li>Verified lease documentation and residency confirmation procedures</li>
+                  <li>Controlled access entry systems</li>
+                  <li>Common-area video surveillance (not inside private units)</li>
+                  <li>Clear conduct policies and enforceable lease terms</li>
+                  <li>Incident documentation protocols</li>
+                  <li>Responsive onsite or regional management</li>
+                  <li>Cooperation with lawful requests consistent with applicable law</li>
+                </ul>
+
+                <h4>What we do not do</h4>
+                <ul>
+                  <li>We do not supervise residents on behalf of any agency</li>
+                  <li>We do not monitor inside private residences</li>
+                  <li>We do not investigate or enforce beyond lease terms</li>
+                  <li>We do not disclose resident data without lawful basis</li>
+                </ul>
+
+                <h4>Why this helps</h4>
+                <ul>
+                  <li>Reduces “ghost address” problems and transient housing churn</li>
+                  <li>Creates consistent, documentable housing stability</li>
+                  <li>Provides objective incident records when needed</li>
+                  <li>Discourages disorder through structure and clear rules</li>
+                </ul>
+
+                <div style="margin-top: 12px; display:flex; gap:10px; flex-wrap:wrap;">
+                  <a class="btn" href="#contact">Request Partner Info</a>
+                  <a class="btn ghost" href="#contact">Lawful Inquiry Contact</a>
+                </div>
+              </div>
+            </details>
+
+            <details>
+              <summary>
+                Law Enforcement
+                <span class="tag">Community Safety</span>
+              </summary>
+              <div class="content">
+                <h4>Operational transparency</h4>
+                <ul>
+                  <li>Professional management contact pathways</li>
+                  <li>Common-area security infrastructure to deter disorder</li>
+                
