@@ -1,6 +1,13 @@
 <!doctype html>
 <html lang="en">
 <head>
+    <script>
+  // Single switch for your backend later.
+  // Examples later:
+  //   https://api.yourbrand.com
+  //   https://your-backend.onrender.com
+    window.APP_CONFIG = { API_BASE_URL: "" };
+    </script>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Micro-Studio Communities | Secure. Stable. Attainable.</title>
@@ -340,6 +347,26 @@
     :target{ scroll-margin-top: 90px; }
   </style>
 </head>
+
+<script>
+  function apiUrl(path) {
+    const base = (window.APP_CONFIG?.API_BASE_URL || "").replace(/\/+$/, "");
+    const p = String(path || "").replace(/^\/+/, "");
+    return base ? `${base}/${p}` : null;
+  }
+
+  async function apiFetch(path, options = {}) {
+    const url = apiUrl(path);
+    if (!url) throw new Error("API_BASE_URL not configured.");
+    const res = await fetch(url, {
+      ...options,
+      headers: { "Content-Type": "application/json", ...(options.headers || {}) }
+    });
+    if (!res.ok) throw new Error(`API error ${res.status}`);
+    const ct = res.headers.get("content-type") || "";
+    return ct.includes("application/json") ? res.json() : res.text();
+  }
+</script>
 
 <body>
   <!-- Top Nav -->
