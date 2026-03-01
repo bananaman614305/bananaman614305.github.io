@@ -8,7 +8,7 @@
   <style>
   /* Hamburger button */
 .hamburger{
-  display:none;
+  display:inline-flex;
   width: 42px;
   height: 42px;
   border-radius: 14px;
@@ -84,7 +84,6 @@ body.menu-open .drawer{ transform: translateX(0); }
 /* Mobile behavior: hide the inline nav links, show hamburger */
 @media (max-width: 980px){
   .nav-links{ display:none; }
-  .hamburger{ display:inline-flex; }
 }
 
 /* Brand stacking option on smaller screens */
@@ -487,8 +486,6 @@ body.menu-open .drawer{ transform: translateX(0); }
         </nav>
 
         <div class="nav-cta">
-  <a class="btn ghost" href="#contact">Partner With Us</a>
-  <a class="btn primary" href="#apply">Apply</a>
 
   <!-- Hamburger (shows on mobile via your CSS) -->
   <button class="hamburger" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false">
