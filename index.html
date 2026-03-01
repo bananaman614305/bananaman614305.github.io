@@ -6,6 +6,138 @@
   <title>A New Leaf | Secure. Stable. Attainable.</title>
   <meta name="description" content="Professionally managed A New Leaf expanding affordable housing access while strengthening workforce and neighborhood stability." />
   <style>
+  
+  /* ===== Gallery grid ===== */
+.gallery-grid{
+  display:grid;
+  grid-template-columns: repeat(4, minmax(0,1fr));
+  gap: 14px;
+  margin-top: 14px;
+}
+
+.gallery-item{
+  margin:0;
+  border-radius: 18px;
+  overflow:hidden;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.03);
+  box-shadow: var(--shadow, 0 18px 60px rgba(0,0,0,0.45));
+}
+
+.gallery-item img{
+  display:block;
+  width:100%;
+  height: 160px;
+  object-fit: cover;
+  cursor: pointer;
+  transition: transform .18s ease, opacity .18s ease;
+}
+
+.gallery-item img:hover{
+  transform: scale(1.02);
+  opacity: 0.95;
+}
+
+@media (max-width: 980px){
+  .gallery-grid{ grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .gallery-item img{ height: 170px; }
+}
+
+@media (max-width: 520px){
+  .gallery-grid{ grid-template-columns: 1fr; }
+  .gallery-item img{ height: 190px; }
+}
+
+/* ===== Lightbox ===== */
+.lightbox{
+  position: fixed;
+  inset: 0;
+  display: none;
+  z-index: 1200;
+}
+
+.lightbox.open{ display:block; }
+
+.lightbox-backdrop{
+  position:absolute;
+  inset:0;
+  background: rgba(0,0,0,0.72);
+  backdrop-filter: blur(6px);
+}
+
+.lightbox-panel{
+  position:absolute;
+  inset: 0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding: 16px;
+}
+
+.lightbox-img{
+  max-width: min(980px, 96vw);
+  max-height: 78vh;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(255,255,255,0.03);
+  box-shadow: 0 30px 120px rgba(0,0,0,0.65);
+}
+
+.lightbox-caption{
+  position: absolute;
+  bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: min(980px, 92vw);
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: rgba(11,15,23,0.72);
+  border: 1px solid rgba(255,255,255,0.08);
+  color: rgba(232,238,252,0.92);
+  font-size: 13px;
+  text-align:center;
+}
+
+.lightbox-close{
+  position:absolute;
+  top: 16px;
+  right: 16px;
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(255,255,255,0.06);
+  color: #e8eefc;
+  cursor:pointer;
+}
+
+.lightbox-nav{
+  position:absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 52px;
+  height: 52px;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(255,255,255,0.06);
+  color: #e8eefc;
+  cursor:pointer;
+  font-size: 34px;
+  line-height: 0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.lightbox-nav.prev{ left: 16px; }
+.lightbox-nav.next{ right: 16px; }
+
+@media (max-width: 520px){
+  .lightbox-nav{ width: 46px; height: 46px; border-radius: 16px; }
+  .lightbox-nav.prev{ left: 10px; }
+  .lightbox-nav.next{ right: 10px; }
+}
+
   /* Hamburger button */
 .hamburger{
   display:inline-flex;
@@ -767,6 +899,63 @@ body.menu-open .drawer{ transform: translateX(0); }
       </div>
     </section>
 
+<section class="panel" id="gallery">
+  <div class="wrap">
+    <div class="kicker">Visuals</div>
+    <h2>Inside the Model</h2>
+    <p class="subtle">Tap an image to expand. Swipe or use arrows to browse.</p>
+
+    <div class="gallery-grid">
+
+  <!-- 1. Entrance -->
+  <figure class="gallery-item">
+    <img src="images/entrance-01.png"
+         alt="A New Leaf property entrance with signage and gated access">
+  </figure>
+
+  <!-- 2. Exterior -->
+  <figure class="gallery-item">
+    <img src="images/exterior-01.png"
+         alt="Exterior building and parking area">
+  </figure>
+
+  <!-- 3. Room 1 -->
+  <figure class="gallery-item">
+    <img src="images/room-01.png"
+         alt="Micro-studio interior with two beds and modern finishes">
+  </figure>
+
+  <!-- 4. Room 2 -->
+  <figure class="gallery-item">
+    <img src="images/room-02.png"
+         alt="Studio interior with kitchenette and sleeping area">
+  </figure>
+
+  <!-- 5. Room 3 -->
+  <figure class="gallery-item">
+    <img src="images/room-03.png"
+         alt="Studio interior with privacy divider and dual beds">
+  </figure>
+
+</div>
+  </div>
+</section>
+
+<!-- Lightbox (place once, near end of body is fine) -->
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <div class="lightbox-backdrop" id="lightboxBackdrop"></div>
+
+  <div class="lightbox-panel" role="dialog" aria-modal="true" aria-label="Image viewer">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Close">✕</button>
+
+    <button class="lightbox-nav prev" id="lightboxPrev" aria-label="Previous image">‹</button>
+    <button class="lightbox-nav next" id="lightboxNext" aria-label="Next image">›</button>
+
+    <img class="lightbox-img" id="lightboxImg" alt="">
+    <div class="lightbox-caption" id="lightboxCaption"></div>
+  </div>
+</div>
+
     <!-- WHO / MODEL -->
     <section id="model">
       <div class="wrap">
@@ -981,6 +1170,76 @@ body.menu-open .drawer{ transform: translateX(0); }
       if (e.key === 'Escape') closeMenu();
     });
   </script>
+
+<script>
+(function(){
+  const thumbs = Array.from(document.querySelectorAll('.gallery-grid img'));
+  if (!thumbs.length) return;
+
+  const lb = document.getElementById('lightbox');
+  const backdrop = document.getElementById('lightboxBackdrop');
+  const closeBtn = document.getElementById('lightboxClose');
+  const prevBtn = document.getElementById('lightboxPrev');
+  const nextBtn = document.getElementById('lightboxNext');
+  const imgEl = document.getElementById('lightboxImg');
+  const capEl = document.getElementById('lightboxCaption');
+
+  let idx = 0;
+
+  function openAt(i){
+    idx = (i + thumbs.length) % thumbs.length;
+    const t = thumbs[idx];
+    imgEl.src = t.src;
+    imgEl.alt = t.alt || '';
+    capEl.textContent = t.dataset.caption || t.alt || '';
+    lb.classList.add('open');
+    lb.setAttribute('aria-hidden','false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function close(){
+    lb.classList.remove('open');
+    lb.setAttribute('aria-hidden','true');
+    document.body.style.overflow = '';
+  }
+
+  function prev(){ openAt(idx - 1); }
+  function next(){ openAt(idx + 1); }
+
+  thumbs.forEach((t, i) => {
+    t.addEventListener('click', () => openAt(i));
+    t.style.touchAction = 'pan-y';
+  });
+
+  backdrop.addEventListener('click', close);
+  closeBtn.addEventListener('click', close);
+  prevBtn.addEventListener('click', prev);
+  nextBtn.addEventListener('click', next);
+
+  // Keyboard
+  document.addEventListener('keydown', (e) => {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'ArrowLeft') prev();
+    if (e.key === 'ArrowRight') next();
+  });
+
+  // Swipe (mobile)
+  let startX = null;
+  imgEl.addEventListener('touchstart', (e) => {
+    startX = e.touches[0].clientX;
+  }, {passive:true});
+
+  imgEl.addEventListener('touchend', (e) => {
+    if (startX === null) return;
+    const endX = e.changedTouches[0].clientX;
+    const dx = endX - startX;
+    startX = null;
+    if (Math.abs(dx) < 45) return;
+    if (dx > 0) prev(); else next();
+  }, {passive:true});
+})();
+</script>
 
 </body>
 </html>
