@@ -219,9 +219,9 @@ body.menu-open .drawer{ transform: translateX(0); }
 }
 
 .logo-img.logo-big{
-  width: 58px;
-  height: 58px;
-  border-radius: 18px;
+  width: 82px;
+  height: 82px;
+  border-radius: 22px;
   object-fit: contain;
   border: 1px solid rgba(255,255,255,0.10);
   background: rgba(255,255,255,0.05);
@@ -236,7 +236,7 @@ body.menu-open .drawer{ transform: translateX(0); }
 }
 
 .brand-name{
-  font-size: 18px;
+  font-size: 26px;
   letter-spacing: 0.2px;
   font-weight: 650;
   color: var(--text, #e8eefc);
@@ -244,7 +244,7 @@ body.menu-open .drawer{ transform: translateX(0); }
 
 .brand-tagline{
   margin-top: 6px;
-  font-size: 12px;
+  font-size: 13px;
   opacity: 0.80;
   letter-spacing: 0.7px;
   text-transform: uppercase;
@@ -253,15 +253,15 @@ body.menu-open .drawer{ transform: translateX(0); }
 
 /* Mobile: stack logo above text for a centered crest */
 @media (max-width: 700px){
-  .nav-inner{ min-height: 86px; }
+  .nav-inner{ min-height: 140px; }
   .brand.brand-centered{
     flex-direction: column;
     gap: 10px;
   }
   .brand-stack{ align-items:center; }
-  .logo-img.logo-big{ width: 64px; height: 64px; }
-  .brand-name{ font-size: 17px; }
-  .brand-tagline{ font-size: 11px; }
+  .logo-img.logo-big{ width: 92px; height: 92px; border-radius: 24px; }
+  .brand-name{ font-size: 22px; }
+  .brand-tagline{ font-size: 12px; }
 }
 
 /* Smooth scroll offset for sticky header */
