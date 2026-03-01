@@ -140,43 +140,133 @@ body.menu-open .drawer{ transform: translateX(0); }
       .grid{ grid-template-columns: 1fr; }
     }
 
-    /* Top Nav */
-    .nav{
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      backdrop-filter: blur(10px);
-      background: linear-gradient(to bottom, rgba(11,15,23,0.85), rgba(11,15,23,0.55));
-      border-bottom: 1px solid var(--line);
-    }
-    .nav-inner{
+    /* =========================
+   Modern Tech Header (Single Source of Truth)
+   ========================= */
+
+.nav{
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  background: rgba(11,15,23,0.72);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.nav-inner{
+  position: relative;      /* allows pinning hamburger */
   display:flex;
   align-items:center;
-  justify-content:center;   /* <-- center the brand */
+  justify-content:center;  /* centers brand */
+  min-height: 78px;
   padding: 12px 0;
-  gap: 12px;
-  position: relative;       /* <-- allows absolute hamburger */
 }
 
-.brand{
-  display:flex;
-  align-items:center;
-  gap: 10px;
-  min-width: unset;         /* <-- remove the centering blocker */
-  text-align: center;
-}
-
+/* Right-pinned hamburger (does not affect centered brand) */
 .nav-cta{
-  position: absolute;
+  position:absolute;
   right: 0;
   top: 50%;
   transform: translateY(-50%);
   display:flex;
-  gap: 10px;
   align-items:center;
-  min-width: unset;         /* <-- remove the centering blocker */
-  justify-content: flex-end;
 }
+
+/* Hamburger always visible (Option A) */
+.hamburger{
+  display:inline-flex;
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(255,255,255,0.06);
+  color: var(--text, #e8eefc);
+  cursor: pointer;
+  align-items:center;
+  justify-content:center;
+}
+.hamburger:hover{ background: rgba(255,255,255,0.09); }
+
+/* Centered brand with tech vibe */
+.brand.brand-centered{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap: 14px;
+  text-align:center;
+  text-decoration:none;
+  user-select:none;
+}
+
+.brand-mark{
+  position: relative;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+}
+
+/* Subtle glow behind emblem */
+.brand-mark::before{
+  content:"";
+  position:absolute;
+  inset:-18px;
+  border-radius: 30px;
+  background: radial-gradient(circle at 50% 50%,
+    rgba(130, 220, 255, 0.22),
+    rgba(130, 220, 255, 0.00) 70%);
+  filter: blur(6px);
+  pointer-events:none;
+}
+
+.logo-img.logo-big{
+  width: 58px;
+  height: 58px;
+  border-radius: 18px;
+  object-fit: contain;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(255,255,255,0.05);
+  box-shadow: 0 18px 60px rgba(0,0,0,0.45);
+}
+
+.brand-stack{
+  display:flex;
+  flex-direction: column;
+  align-items:flex-start;
+  line-height: 1.05;
+}
+
+.brand-name{
+  font-size: 18px;
+  letter-spacing: 0.2px;
+  font-weight: 650;
+  color: var(--text, #e8eefc);
+}
+
+.brand-tagline{
+  margin-top: 6px;
+  font-size: 12px;
+  opacity: 0.80;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+  color: var(--muted, rgba(232,238,252,0.72));
+}
+
+/* Mobile: stack logo above text for a centered crest */
+@media (max-width: 700px){
+  .nav-inner{ min-height: 86px; }
+  .brand.brand-centered{
+    flex-direction: column;
+    gap: 10px;
+  }
+  .brand-stack{ align-items:center; }
+  .logo-img.logo-big{ width: 64px; height: 64px; }
+  .brand-name{ font-size: 17px; }
+  .brand-tagline{ font-size: 11px; }
+}
+
+/* Smooth scroll offset for sticky header */
+:target{ scroll-margin-top: 100px; }
+
     .logo-img{
   width: 34px;
   height: 34px;
@@ -608,6 +698,20 @@ body.menu-open .drawer{ transform: translateX(0); }
     <button class="btn" id="closeDrawerBtn" type="button" aria-label="Close menu">Close</button>
   </div>
 
+  <!-- Primary nav links (this was missing in your current build) -->
+  <div class="drawer-links" aria-label="Menu links">
+    <a href="#model">Our Model</a>
+    <a href="#communities">Our Communities</a>
+    <a href="#residents">Residents</a>
+    <a href="#public-safety">Public Safety Partners</a>
+    <a href="#municipal">Municipal &amp; Regulatory</a>
+    <a href="#neighbors">Neighbors &amp; Community</a>
+    <a href="#security">Safety &amp; Security</a>
+    <a href="#faq">FAQ</a>
+    <a href="#contact">Contact</a>
+  </div>
+
+  <!-- CTAs -->
   <div class="drawer-cta">
     <a class="btn ghost" href="#contact">Partner With Us</a>
     <a class="btn primary" href="#apply">Apply</a>
