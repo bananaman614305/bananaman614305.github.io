@@ -150,18 +150,33 @@ body.menu-open .drawer{ transform: translateX(0); }
       border-bottom: 1px solid var(--line);
     }
     .nav-inner{
-      display:flex;
-      align-items:center;
-      justify-content: space-between;
-      padding: 12px 0;
-      gap: 12px;
-    }
-    .brand{
-      display:flex;
-      align-items:center;
-      gap: 10px;
-      min-width: 220px;
-    }
+  display:flex;
+  align-items:center;
+  justify-content:center;   /* <-- center the brand */
+  padding: 12px 0;
+  gap: 12px;
+  position: relative;       /* <-- allows absolute hamburger */
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap: 10px;
+  min-width: unset;         /* <-- remove the centering blocker */
+  text-align: center;
+}
+
+.nav-cta{
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  display:flex;
+  gap: 10px;
+  align-items:center;
+  min-width: unset;         /* <-- remove the centering blocker */
+  justify-content: flex-end;
+}
     .logo-img{
   width: 34px;
   height: 34px;
@@ -205,13 +220,6 @@ body.menu-open .drawer{ transform: translateX(0); }
       text-decoration: none;
     }
 
-    .nav-cta{
-      display:flex;
-      gap: 10px;
-      align-items:center;
-      min-width: 240px;
-      justify-content: flex-end;
-    }
 
     /* Buttons */
     .btn{
@@ -570,21 +578,7 @@ body.menu-open .drawer{ transform: translateX(0); }
   </span>
 </a>
 
-        <nav class="nav-links" aria-label="Primary">
-          <a href="#model">Our Model</a>
-          <a href="#communities">Our Communities</a>
-          <a href="#residents">Residents</a>
-          <a href="#public-safety">Public Safety Partners</a>
-          <a href="#municipal">Municipal & Regulatory</a>
-          <a href="#neighbors">Neighbors & Community</a>
-          <a href="#security">Safety & Security</a>
-          <a href="#faq">FAQ</a>
-          <a href="#contact">Contact</a>
-        </nav>
-
         <div class="nav-cta">
-
-  <!-- Hamburger (shows on mobile via your CSS) -->
   <button class="hamburger" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
       <path d="M4 7h16M4 12h16M4 17h16"
